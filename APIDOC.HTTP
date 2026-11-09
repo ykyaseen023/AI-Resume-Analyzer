@@ -1,0 +1,171 @@
+### USER REGISTRATION
+
+POST http://127.0.0.1:8000/api/accounts/register/
+Content-Type: application/json
+
+{
+    "username": "testuser02",
+    "email": "testuser02@example.com",
+    "password": "Test@12345"
+}
+
+### LOGIN AND GET JWT TOKENS
+
+POST http://127.0.0.1:8000/api/accounts/login/
+Content-Type: application/json
+
+{
+    "username": "testuser02",
+    "password": "Test@12345"
+}
+
+
+
+### TEST AUTHENTICATION
+
+GET http://127.0.0.1:8000/api/accounts/profile/
+Authorization: Bearer {{accessToken}}
+### RESUME UPLOAD
+
+POST http://127.0.0.1:8000/api/resumes/upload/
+Authorization: Bearer {{accessToken}}
+
+< ./muhammad_yaseen_khan_cv.pdf
+
+### GET MY RESUME LIST
+
+GET http://127.0.0.1:8000/api/resumes/list/
+Authorization: Bearer {{accessToken}}
+DELETE http://127.0.0.1:8000/api/resumes/1/delete/
+Authorization: Bearer {{accessToken}}
+### 1. CREATE SKILL
+
+POST http://127.0.0.1:8000/api/jobs/skills/
+Authorization: Bearer {{accessToken}}
+
+{
+    "name": "mysql"
+}
+
+
+### 2. GET ALL SKILLS
+
+GET http://127.0.0.1:8000/api/jobs/skills/
+Authorization: Bearer {{accessToken}}
+
+
+### 3. GET SINGLE SKILL
+
+GET http://127.0.0.1:8000/api/jobs/skills/1/
+Authorization: Bearer {{accessToken}}
+
+
+
+### 4. UPDATE SKILL
+
+PUT http://127.0.0.1:8000/api/jobs/skills/1/
+Authorization: Bearer {{accessToken}}
+
+Content-Type: application/json
+
+{
+    "name": "Python Programming"
+}
+
+
+### 5. PARTIAL UPDATE SKILL
+
+PATCH http://127.0.0.1:8000/api/jobs/skills/1/
+Authorization: Bearer {{accessToken}}
+
+Content-Type: application/json
+
+{
+    "name": "Advanced Python"
+}
+
+
+### 6. DELETE SKILL
+
+DELETE http://127.0.0.1:8000/api/jobs/skills/1/
+Authorization: Bearer {{accessToken}}
+
+### CREATE JOB
+
+POST http://127.0.0.1:8000/api/jobs/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "title": "Python Developer",
+    "company_name": "ABC Technologies",
+    "description": "Looking for a Python developer with Django and MySQL knowledge.",
+    "required_skills": [1],
+    "experience_level": "fresher",
+    "location": "Thiruvananthapuram",
+    "is_active": true
+}
+
+### GET ALL JOBS
+
+GET http://127.0.0.1:8000/api/jobs/
+Authorization: Bearer {{accessToken}}
+### UPDATE JOB
+
+PUT http://127.0.0.1:8000/api/jobs/1/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "title": "Junior Python Developer",
+    "company_name": "ABC Technologies",
+    "description": "Hiring a junior Python developer.",
+    "required_skills": [1],
+    "experience_level": "fresher",
+    "location": "Kerala",
+    "is_active": true
+}
+
+### DELETE JOB
+
+DELETE http://127.0.0.1:8000/api/jobs/1/
+Authorization: Bearer {{accessToken}}
+
+### UPLOAD RESUME AND EXTRACT TEXT
+
+POST http://127.0.0.1:8000/api/resumes/upload/
+Authorization: Bearer {{accessToken}}
+Content-Type: multipart/form-data; boundary=ResumeBoundary
+
+--ResumeBoundary
+Content-Disposition: form-data; name="file"; filename="sample_resume.pdf"
+Content-Type: application/pdf
+
+< ./sample_resume.pdf
+--ResumeBoundary--
+
+### IDENTIFY RESUME SKILLS
+
+POST http://127.0.0.1:8000/api/analyzer/resumes/2/identify-skills/
+Authorization: Bearer {{accessToken}}
+
+### MATCH RESUME WITH JOB
+POST http://127.0.0.1:8000/api/analyzer/resumes/1/match/2/
+Authorization: Bearer {{accessToken}}
+
+### IDENTIFY RESUME SKILLS AGAIN
+POST http://127.0.0.1:8000/api/analyzer/resumes/1/identify-skills/
+Authorization: Bearer {{accessToken}}
+### AI RESUME ANALYSIS
+POST http://127.0.0.1:8000/api/analyzer/resumes/1/ai-analysis/
+Authorization: Bearer {{accessToken}}
+### GENERATE CAREER RECOMMENDATIONS
+POST http://127.0.0.1:8000/api/recommendations/resumes/1/career-recommendations/
+Authorization: Bearer {{accessToken}}
+
+### VIEW CAREER RECOMMENDATIONS
+GET http://127.0.0.1:8000/api/recommendations/resumes/1/career-recommendations/
+Authorization: Bearer {{accessToken}}
+### COMPLETE RESUME ANALYSIS RESULT
+GET http://127.0.0.1:8000/api/analyzer/resumes/1/result/
+Authorization: Bearer {{accessToken}}

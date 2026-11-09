@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+env/
+venv/
+
+# Environment variables
+.env
+
+# Uploaded files
+media/
+
+# Database
+db.sqlite3
+
+# IDE
+.vscode/
+
+# REST Client credentials
+rest-client.env.json
+
+sample_resume.pdf
+*.pdf
+media/
+.env
+rest-client.env.json
